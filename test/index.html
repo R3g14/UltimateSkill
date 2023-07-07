@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Skill</title>
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+  </head>
+  <body>
+    <div id="main">
+      <div class="skill" id="s1">
+        <select class="listSelect">
+          <option value="" disabled selected hidden></option>
+        </select>
+        <select class="levelSelect">
+          <option value="" disabled selected hidden></option>
+          <option value="1">等级一</option>
+          <option value="2">等级二</option>
+          <option value="3">等级三</option>
+        </select>
+        <div class="time"><p>120</p></div>
+      </div>
+      <div id="plus">+</div>
+    </div>
+    <script src="list.js"></script>
+    <script>
+      window.onload = function () {
+        console.log(jsonData);
+        var list = new Array();
+        jsonData.forEach(function (element) {
+          list.push(element.name);
+        });
+        console.log(list);
+        var select = document.getElementsByClassName("listSelect");
+        for (var l = 0; l < select.length; l++) {
+          for (var i = 0; i < list.length; i++) {
+            var option = document.createElement("option");
+            option.value = list[i];
+            option.textContent = list[i];
+            select[l].appendChild(option);
+          }
+        }
+        var main = document.getElementById("main");
+        var plus = document.getElementById("plus");
+        var skill = document.getElementById("s1");
+        console.log(plus);
+        console.log(skill);
+        plus.addEventListener("click", function () {
+          const newSkill = skill.cloneNode(true);
+          main.insertBefore(newSkill, plus);
+        });
+      };
+    </script>
+  </body>
+</html>
